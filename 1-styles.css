@@ -1,0 +1,32 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin: 15px 5px;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color:  #8a153a;
+    position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    text-decoration: none;
+    background-color: #8a153a;
+    height: 2px;
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 9.5ch;
+}
