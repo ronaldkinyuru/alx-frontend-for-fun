@@ -1,0 +1,6 @@
+/* Generate .col-* classes with different widths */
+@for $item from 1 through 4 {
+    .col-#{$item} {
+      width: 100% / $item;
+    }
+  }

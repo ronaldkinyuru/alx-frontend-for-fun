@@ -1,0 +1,43 @@
+/* Sort strings */
+$list_to_sort: john anna zoe kim felicia carrie;
+
+@function str-compare($a, $b) {
+  $order: a b c d e f g h i j k l m n o p q r s t u v w x y z;
+  @for $i from 1 through min(str-length($a), str-length($b)) {
+    $char-a: to-lower-case(str-slice($a, $i, $i));
+    $char-b: to-lower-case(str-slice($b, $i, $i));
+    $index-a: index($order, $char-a);
+    $index-b: index($order, $char-b);
+    @if $index-a != $index-b {
+      @return $index-a < $index-b;
+    }
+  }
+  @return str-length($a) < str-length($b);
+}
+
+@function sort($list) {
+  $sorted: ();
+  @while length($list) > 0 {
+    $min: nth($list, 1);
+    @each $item in $list {
+      @if str-compare($item, $min) {
+        $min: $item;
+      }
+    }
+    $sorted: append($sorted, $min);
+    $list: list-remove($list, index($list, $min));
+  }
+  @return $sorted;
+}
+
+@function list-remove($list, $index) {
+  $result: ();
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $result: append($result, nth($list, $i));
+    }
+  }
+  @return $result;
+}
+
+@debug sort($list_to_sort);

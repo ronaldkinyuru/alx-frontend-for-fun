@@ -1,0 +1,6 @@
+/* Generate h* tags with font sizes */
+@for $i from 1 through 5 {
+    h#{$i} {
+        font-size: #{$i}px;
+    }
+}
